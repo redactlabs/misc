@@ -1,0 +1,29 @@
+# CUSTOMFIXES for Terminator 0.97 by Brian Vianzon (info@redactlabs.info)
+# Installed on CentOS Linux release 7.2.1511 (Core)
+# Kernel: 3.10.0-327.36.1.el7.x86_64
+
+# Compiled and Installed Terminator 0.97 from source
+# Needed the following packages: 
+
+tar -xvf terminator-0.97.tar.gz && cd terminator-0.97
+sudo ./setup.py install --record=install-files.txt
+yum install -y gcc
+yum install -y intltool
+yum install -y vte
+yum install -y python-devel
+yum install -y python-keybinder
+yum install -y python-pip
+easy_install py-notify
+
+# Warning: ActivityWatch plugin unavailable: please install python-notify
+# Note: original file is activitywatch.py.bak
+# Changed 'pynotify' to 'notify' 
+
+$ pwd 
+/usr/lib/python2.7/site-packages/terminatorlib/plugins
+$ diff activitywatch.py activitywatch.py.bak 
+16c16
+<     import notify
+---
+>     import pynotify
+
